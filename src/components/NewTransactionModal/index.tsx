@@ -1,3 +1,4 @@
+import React,{useState} from 'react';
 import  Modal  from 'react-modal';
 import * as C from './style';
 import { Container, TransactionsTypeContainer } from './style';
@@ -11,6 +12,8 @@ interface NewTransactionsModalProps{
 }
 
 const NewTransactionsModal=({isOpened,onRequestClose}:NewTransactionsModalProps)=>{
+    const [type,setType]=useState("deposit");
+
     return(
         <Modal 
         isOpen={isOpened} 
@@ -31,14 +34,14 @@ const NewTransactionsModal=({isOpened,onRequestClose}:NewTransactionsModalProps)
             <input type="number" placeholder='Valor' />
 
             <C.TransactionsTypeContainer>
-                <button type="button">
+                <C.RadioBox type="button" isActive={type==='deposit'} onClick={()=>{setType('deposit')}}>
                     <img src={incomeImg} alt="Entrada" />
                     <span>Entrada</span>
-                </button>
-                <button type="button">
+                </C.RadioBox>
+                <C.RadioBox type="button" isActive= {type==='withdraw'} onClick={()=>{setType('withdraw')}}>
                     <img src={outcomeImg}alt="Saida" />
                     <span>Saida</span>
-                </button>
+                </C.RadioBox>
             </C.TransactionsTypeContainer>
 
             <input placeholder="Categoria"/>
