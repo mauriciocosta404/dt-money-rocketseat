@@ -34,11 +34,11 @@ const NewTransactionsModal=({isOpened,onRequestClose}:NewTransactionsModalProps)
             <input type="number" placeholder='Valor' />
 
             <C.TransactionsTypeContainer>
-                <C.RadioBox type="button" isActive={type==='deposit'} onClick={()=>{setType('deposit')}}>
+                <C.RadioBox type="button" activeColor="green" isActive={type==='deposit'} onClick={()=>{setType('deposit')}}>
                     <img src={incomeImg} alt="Entrada" />
                     <span>Entrada</span>
                 </C.RadioBox>
-                <C.RadioBox type="button" isActive= {type==='withdraw'} onClick={()=>{setType('withdraw')}}>
+                <C.RadioBox type="button" activeColor="red" isActive= {type==='withdraw'} onClick={()=>{setType('withdraw')}}>
                     <img src={outcomeImg}alt="Saida" />
                     <span>Saida</span>
                 </C.RadioBox>
