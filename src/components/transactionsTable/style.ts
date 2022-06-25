@@ -6,14 +6,14 @@ export const Container=styled.div`
         width: 100%;
         border-spacing:0 .5rem;
 
-        th{
+        thead th{
             color:var(--text-title);
             font-weight: 400;
             padding: 1rem 2rem;
             text-align: left;
             line-height: 1.5rem;
         }
-        td{
+        tbody td{
             padding: 1rem 2rem;
             border:0;
             background: var(--shape);

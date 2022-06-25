@@ -1,12 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect, useState} from 'react';
 import * as C from './style';
 import { api } from '../../services/api';
 
-const TransactionsTable:React.FC=()=>{
+interface Transaction{
+    id:number;
+    type:string;
+    category:string;
+    title:string;
+    createAt:string;
+    amount:number;
+}
+
+const TransactionsTable:React.FC=()=>{ 
+
+    const [transactions,setTransactions]=useState<Transaction[]>([]);
 
     useEffect(()=>{
         api.get('https://localhost:3000/api/transactions').
-        then((response)=>console.log(response.data));
+        then((response)=>setTransactions(response.data.transactions));
     },[]);
 
     return(
@@ -22,20 +33,14 @@ const TransactionsTable:React.FC=()=>{
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>desenvolvimento de website</td>
-                        <td className="deposit">R$12.000</td>
-                        <td>desenvolvimento</td>
-                        <td>20/02/2022</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>aluguel</td>
-                        <td className='withdraw'>-R$12.000</td>
-                        <td>casa</td>
-                        <td>13/02/2012</td>
-                    </tr>
-        
+                {transactions.map((transaction)=>(
+                        <tr key={transaction.id}>
+                            <td>{transaction.title}</td>
+                            <td className={transaction.type}>{transaction.amount}</td>
+                            <td>{transaction.category}</td>
+                            <td>{transaction.createAt}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </C.Container>
